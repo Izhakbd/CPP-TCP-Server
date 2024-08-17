@@ -18,12 +18,18 @@ class Video {
         }
 
         // Setter for id
-        void setId(int id) {
-            id = id;
+        void setId(int videoId) {
+            id = videoId;
         }
 
         // Setter for views
-        void setViews(int views) {
-            views = views;
+        void setViews(int videoViews) {
+            views = videoViews;
         }
+
+    // Overload the << operator to print the Video object
+    friend std::ostream& operator<<(std::ostream& os, Video& video) {
+        os << "Video ID: " << video.getId() << ", Views: " << video.getViews();
+        return os;
+    }
 };
