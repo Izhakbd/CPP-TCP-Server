@@ -11,10 +11,33 @@
 using namespace std;
 
 list <Video> VideoWatchingUsersList[100]; // List of videos that each user is watching, indexed by user ID ,global variable.
+int recommendedVideos[10]; // List of recommended videos for user who report on watching some video,global variable.
+
+
+/*
+This function prints the list of videos that each user is watching to the console.
+*/
+void printAllUsersVideoList() {
+    std::cout << "Printing VideoWatchingUsersList for all users:" << std::endl;
+
+    for (int userId = 0; userId < 100; ++userId) { // Iterate over each user ID
+        if (!VideoWatchingUsersList[userId].empty()) { // Check if the user's list is not empty
+            std::cout << "User ID " << userId << " is watching the following videos:" << std::endl;
+
+            for (Video& video : VideoWatchingUsersList[userId]) {
+                std::cout << video << std::endl; // Print each video using the overloaded << operator
+            }
+
+            std::cout << std::endl; // Add a newline for readability between users
+        }
+    }
+}
+
 
 
 void handleClient(int client_sock) {
-    
+    int videoExistInList = 0;
+
     // Get the user ID from the client
     std::cout << "Client connected." << std::endl;
     // char bufForUserId[4096];
@@ -70,11 +93,29 @@ void handleClient(int client_sock) {
 
             // Print the received video data to the console
             std::cout << "Received Video ID: " << videoId << ", Views: " << videoViews << std::endl;
+            std::cout << std::endl; // Add a newline for readability between printing list of all users.
 
-            // Add the video to the appropriate user's list
-            VideoWatchingUsersList[userId].push_back(Video(videoId, videoViews));
+            if (VideoWatchingUsersList[userId].empty()) {// if the user's list is empty add the video to the list
+                // Add the video to the appropriate user's list
+                VideoWatchingUsersList[userId].push_back(Video(videoId, videoViews));
+            } 
 
-            // Optionally, send an acknowledgment to the client
+            for (Video& video : VideoWatchingUsersList[userId]) {
+                if(video.getId() == videoId){ // Check if the video ID already exists in the user's list
+                    videoExistInList = 1; //flag that the video exist in the list
+                    video.setViews(videoViews);
+                    break;
+                } 
+            }
+
+            if(videoExistInList == 0){ // If the video ID does not exist in the user's list
+                // Add the video to the user's list
+                VideoWatchingUsersList[userId].push_back(Video(videoId, videoViews));
+            }
+
+            printAllUsersVideoList(); // Print the list of videos for all users 
+
+            // Send an acknowledgment to the client
             std::string ack = "Video data received: " + std::to_string(videoId);
             send(client_sock, ack.c_str(), ack.size(), 0);
 
