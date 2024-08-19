@@ -7,11 +7,64 @@
 #include <list>
 #include <jsoncpp/json/json.h> // Include JSON library
 #include "Video.cpp"
+#include <algorithm> // Include for sort
 
 using namespace std;
 
 list <Video> VideoWatchingUsersList[100]; // List of videos that each user is watching, indexed by user ID ,global variable.
 int recommendedVideos[10]; // List of recommended videos for user who report on watching some video,global variable.
+
+
+
+
+
+// Function to sort each list in VideoWatchingUsersList by views in descending order
+void sortVideosByViews() {
+    for (int userId = 0; userId < 100; ++userId) { // Iterate over each user ID
+        if (!VideoWatchingUsersList[userId].empty()) { // Check if the user's list is not empty
+            // Sort the list using a lambda function to compare videos by views
+            VideoWatchingUsersList[userId].sort([](const Video& a, const Video& b) {
+                return a.getViews() > b.getViews(); // Sort in descending order
+            });
+        }
+    }
+}
+
+
+
+/*
+This function returns a list of recommended videos for a user who is watching a specific video.
+*/
+int* getRecommendedVideos(int videoId) {
+    int i = 0;
+    // Implement the recommendation system logic here
+    for (int userId = 1; userId < 100; ++userId) { // Iterate over each user ID
+        if (VideoWatchingUsersList[userId].empty()) { // Check if the user's list is empty, and continue to the next user if it is.
+            continue;
+
+       
+        //check if the videoId is found in the user's list
+        if (std::any_of(VideoWatchingUsersList[userId].begin(), VideoWatchingUsersList[userId].end(), 
+            [videoId](const Video& video) { 
+                return video.getId() == videoId; 
+            })) {
+
+                for (Video& video : VideoWatchingUsersList[userId]) {//add the users videos who also wathcing the videoId to the recommendedVideos list. 
+                    recommendedVideos[i] = video.getId();
+                    i++;
+                    if (i == 9) {
+                        break;
+                    }
+                }
+            }
+            
+        }
+    }
+    return recommendedVideos;
+}
+
+
+
 
 
 /*
@@ -114,6 +167,8 @@ void handleClient(int client_sock) {
             }
 
             printAllUsersVideoList(); // Print the list of videos for all users 
+            sortVideosByViews(); // Sort the list of videos for all users by views in descending order
+            int* recommendedVideos = getRecommendedVideos(videoId); // Get the recommended videos for the user who reported watching the video
 
             // Send an acknowledgment to the client
             std::string ack = "Video data received: " + std::to_string(videoId);
