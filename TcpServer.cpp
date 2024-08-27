@@ -172,10 +172,33 @@ void handleClient(int client_sock) {
 
             // Send an acknowledgment to the client
             std::string ack = "Video data received: " + std::to_string(videoId);
-            send(client_sock, ack.c_str(), ack.size(), 0);
+            // send(client_sock, ack.c_str(), ack.size(), 0);
 
 
-            //here we need to implement the logic of recommendation system and return to node.js server ,list of recommended video.
+            // here we need to implement the logic of recommendation system and return to node.js server ,list of recommended video.
+
+            // Create a JSON object for the response
+            Json::Value responseJson;
+
+            // Create a JSON array for recommended videos
+            Json::Value recommendedVideosArray(Json::arrayValue);
+
+            // Populate the array with recommended video IDs
+            for (int i = 0; i < sizeof(recommendedVideos)/sizeof(int); i++)
+            {
+                recommendedVideosArray.append(recommendedVideos[i]);
+            }
+
+            // Add the array to the response JSON object
+            responseJson["recommendedVideos"] = recommendedVideosArray;
+
+            // Convert the JSON object to a string
+            Json::FastWriter writer;
+            std::string jsonString = writer.write(responseJson);
+
+            // Send the JSON string to the client
+            send(client_sock, jsonString.c_str(), jsonString.length(), 0);
+
         }
     }
 }
