@@ -60,6 +60,7 @@ int* getRecommendedVideos(int videoId) {
             
         }
     }
+
     return recommendedVideos;
 }
 
@@ -86,6 +87,21 @@ void printAllUsersVideoList() {
     }
 }
 
+std::string intArrayToJson(const std::vector<int> &arr)
+{
+    std::ostringstream json;
+    json << "{\"array\": [";
+    for (size_t i = 0; i < arr.size(); ++i)
+    {
+        json << arr[i];
+        if (i < arr.size() - 1)
+        {
+            json << ", ";
+        }
+    }
+    json << "]}";
+    return json.str();
+}
 
 
 void handleClient(int client_sock) {
@@ -174,30 +190,24 @@ void handleClient(int client_sock) {
             std::string ack = "Video data received: " + std::to_string(videoId);
             // send(client_sock, ack.c_str(), ack.size(), 0);
 
-
             // here we need to implement the logic of recommendation system and return to node.js server ,list of recommended video.
 
-            // Create a JSON object for the response
-            Json::Value responseJson;
-
-            // Create a JSON array for recommended videos
-            Json::Value recommendedVideosArray(Json::arrayValue);
-
-            // Populate the array with recommended video IDs
-            for (int i = 0; i < sizeof(recommendedVideos)/sizeof(int); i++)
-            {
-                recommendedVideosArray.append(recommendedVideos[i]);
+            // Convert the recommended videos array to a vector
+            std::vector<int> recommendedVideosVector;
+            for (int i = 0; i < 10; ++i)
+            { // Assuming recommendedVideos has 10 elements
+                if (recommendedVideos[i] != 0)
+                { // Only add non-zero values
+                    recommendedVideosVector.push_back(recommendedVideos[i]);
+                }
             }
 
-            // Add the array to the response JSON object
-            responseJson["recommendedVideos"] = recommendedVideosArray;
-
-            // Convert the JSON object to a string
-            Json::FastWriter writer;
-            std::string jsonString = writer.write(responseJson);
+            // Use intArrayToJson to convert the vector to a JSON string
+            std::string jsonString = intArrayToJson(recommendedVideosVector);
 
             // Send the JSON string to the client
             send(client_sock, jsonString.c_str(), jsonString.length(), 0);
+
 
         }
     }
