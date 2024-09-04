@@ -1,4 +1,5 @@
 # Compiling the TCP and running it
+this repository
 
 First , compile the TcpServer.cpp file with the command : "g++ TcpServer.cpp -ljsoncpp -o TcpServer"
 ![צילום מסך 2024-09-04 101334](https://github.com/user-attachments/assets/6d77bca1-bdb1-4eb3-bde9-7bee0bf9740a)
@@ -14,6 +15,8 @@ Great! Now the Tcp server in on and wait for clients.
 The server listening in port 5555.
 
 # Runnig the nodeJs server
+repository link - https://github.com/ErezChamilevsky/youtubeProjectServer/tree/Part4Main
+
 
 Inorder to run this code - you should load to the mongo the json files - to have default users and videos.
 
@@ -37,7 +40,7 @@ Than you should run the server by writing in CL 'npm start' and then you should 
 ![צילום מסך 2024-09-04 102808](https://github.com/user-attachments/assets/aaf93944-6819-4324-be24-d321d8c3aa51)
 
 # Andorid 
-
+repository link - https://github.com/ErezChamilevsky/ProjectAndroidVersion/tree/part3Main
 The code for part 3 is under branch part3Main.
 the implemntion of API for work with the server is under api directory (in src->main->java->api).
 clone the project and run him from part3Main branch.
