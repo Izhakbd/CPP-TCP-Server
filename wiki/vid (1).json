@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "img": "/images/vid-images/Spread_Happines.png",
+        "videoSrc": "/images/videos/Spread_Happiness.mp4",
+        "title": "Spread Happines- simple and meaningful animation",
+        "displayName": "Chad",
+        "publicationDate": "2020-10-01",
+        "views": 10,
+        "description": "le",
+        "likes": 3,
+        "userId": 1
+    },
+    {
+        "id": 2,
+        "img": "/images/vid-images/counter.png",
+        "videoSrc": "/images/videos/counter.mp4",
+        "title": "A nice one minute counter for children and kids",
+        "displayName": "Chad",
+        "publicationDate": "1920-10-01",
+        "views": 100,
+        "description": "s check",
+        "likes": 3,
+        "userId": 1
+    },
+    {
+        "id": 3,
+        "img": "/images/vid-images/madrid.png",
+        "videoSrc": "/images/videos/Madrid-in-a-nutshell.mp4",
+        "title": "Introducing Madrid in a nutshell",
+        "displayName": "Srutonim",
+        "publicationDate": "2023-06-02",
+        "views": 25,
+        "description": "if",
+        "likes": 20,
+        "userId": 2
+    },
+    {
+        "id": 4,
+        "img": "/images/vid-images/40_years.png",
+        "videoSrc": "/images/videos/One_year_in_40_seconds.mp4",
+        "title": "World's second smallest BarBar Created Ever",
+        "displayName": "Chad",
+        "publicationDate": "2002-06-29",
+        "views": 23,
+        "description": "u",
+        "likes": 20,
+        "userId": 1
+    },
+    {
+        "id": 5,
+        "img": "/images/vid-images/TED_talk.png",
+        "videoSrc": "/images/videos/ted.mp4",
+        "title": "Latest One minute ted talk in LA",
+        "displayName": "Chad",
+        "publicationDate": "2023-04-11",
+        "views": 134,
+        "description": "got it",
+        "likes": 15,
+        "userId": 1
+    },
+    {
+        "id": 6,
+        "img": "/images/vid-images/Ronaldo_interview.png",
+        "videoSrc": "/images/videos/ro.mp4",
+        "title": "Ronaldo talks about Halland in an interview",
+        "displayName": "Srutonim",
+        "publicationDate": "1920-10-01",
+        "views": 43,
+        "description": "some description",
+        "likes": 3,
+        "userId": 2
+    },
+    {
+        "id": 7,
+        "img": "/images/vid-images/Olympic_teaser.png",
+        "videoSrc": "/images/videos/Olympic.mp4",
+        "title": "2020 Tokyo Olympic Games Teaser",
+        "displayName": "Chad",
+        "publicationDate": "2019-10-01",
+        "views": 103,
+        "description": "some description",
+        "likes": 40,
+        "userId": 1
+    },
+    {
+        "id": 8,
+        "img": "/images/vid-images/Shortest_movie.png",
+        "videoSrc": "/images/videos/Shortest_movie.mp4",
+        "title": "Interview vith Cristioano Ronaldo",
+        "displayName": "Chad",
+        "publicationDate": "1920-10-01",
+        "views": 70,
+        "description": "some description",
+        "likes": 21,
+        "userId": 1
+    },
+    {
+        "id": 9,
+        "img": "/images/vid-images/Shortest_song.png",
+        "videoSrc": "/images/videos/Short.mp4",
+        "title": "Shortest song ever created by humans ",
+        "displayName": "Srutonim",
+        "publicationDate": "1920-10-01",
+        "views": 29,
+        "description": "some description",
+        "likes": 15,
+        "userId": 2
+    },
+    {
+        "id": 10,
+        "img": "/images/vid-images/LifeIsLikeThis.png",
+        "videoSrc": "/images/videos/LifeIsLikeThis.mp4",
+        "title": "'Life Is Like This' - suits memorable scene",
+        "displayName": "Chad",
+        "publicationDate": "1920-10-01",
+        "views": 100,
+        "description": "some description",
+        "likes": 3,
+        "userId": 1
+    }
+]
